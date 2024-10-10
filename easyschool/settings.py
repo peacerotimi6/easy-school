@@ -18,8 +18,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'dpe26%-k#-q^gajj1g8kzurcq%)1_at&u6ne5$*n#zo%#50lcs'
+base64_secret_key = os.environ.get('DJANGO_SECRET_KEY', 'c2VjcmV0X2tleV92YWx1ZQ==')
+SECRET_KEY = base64.b64decode(base64_secret_key).decode('utf-8')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -133,3 +133,5 @@ INTERNAL_IPS = ('127.0.0.1',)
 
 # XFrame Settings
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+# Default auto field
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
